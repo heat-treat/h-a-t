@@ -107,7 +107,7 @@ const RequireAllowed = ({ children }) => {
 };
 
 const App = () => {
-  const url = "http://localhost:4000";
+  const url = "https://h-a-t-backend.onrender.com";
 
   return (
     <AuthProvider>
