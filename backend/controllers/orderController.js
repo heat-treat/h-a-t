@@ -248,7 +248,7 @@ import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
 
 // Frontend base URL (env fallback to localhost)
-const frontend_url = process.env.FRONTEND_URL || "http://localhost:5173";
+const frontend_url = process.env.FRONTEND_URL || "https://h-a-t-frontend.onrender.com";
 
 // Placing user order (Cash on Delivery - No Stripe)
 const placeOrder = async (req, res) => {
