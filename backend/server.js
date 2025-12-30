@@ -16,7 +16,7 @@ const port = process.env.PORT || 4000;
 app.use(express.json());
 // But this is safer for production
 app.use(cors({
-  origin: "https://your-frontend-site.onrender.com" 
+  origin: "https://h-a-t-frontend.onrender.com" 
 }));
 // app.use(cors());
 
