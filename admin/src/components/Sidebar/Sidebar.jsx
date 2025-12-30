@@ -60,7 +60,7 @@ const Sidebar = () => {
           <BiBox className="box" />
           <p>Orders</p>
         </NavLink> */}
-        <a href="https://en.wikipedia.org/wiki/Point_of_sale" className="sidebar-option">
+        <a href="https://h-a-t-frontend.onrender.com" className="sidebar-option">
           <GiShop  className="shop" />
           <p>H.A.T</p>
         </a>
