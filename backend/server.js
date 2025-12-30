@@ -15,10 +15,10 @@ const port = process.env.PORT || 4000;
 // middleware
 app.use(express.json());
 // But this is safer for production
-app.use(cors({
-  origin: "https://h-a-t-frontend.onrender.com" 
-}));
-// app.use(cors());
+// app.use(cors({
+//   origin: "https://h-a-t-frontend.onrender.com" 
+// }));
+app.use(cors());
 
 // db connection
 
