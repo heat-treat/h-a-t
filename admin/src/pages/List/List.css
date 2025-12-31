@@ -1,0 +1,341 @@
+/* 
+.list p{
+    color: rgb(179, 180, 180);
+}
+
+
+
+.list-table-format{
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 1fr 1fr 0.5fr;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 15px;
+    border: 1px solid #464545;
+    font-size: 13px;
+}
+
+.list-table-format.title{
+    background-color: #ff2600;
+    color: black;
+}
+
+.list-table-format img{
+    width: 50px;
+}
+
+@media (max-width:600px) {
+    .list-table-format{
+        grid-template-columns: 1fr 3fr 1fr;
+        gap: 15px;
+    }
+    .list-table-format.title{
+        display: none;
+    }
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .list p {
+  color: rgb(179, 180, 180);
+}
+
+
+.list-table-format {
+  display: grid;
+  grid-template-columns: 0.5fr 2fr 1fr 1fr 0.5fr;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 15px;
+  border: 1px solid #464545;
+  font-size: 13px;
+}
+
+.list-table-format.title {
+  background-color: #ff2600;
+  color: black;
+}
+
+.list-table-format img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.list-table-format .cell-action{
+    color: black;
+    background: #ff2600;
+}
+
+
+.cursor {
+  cursor: pointer;
+}
+
+
+.list-loading,
+.list-empty {
+  padding: 12px 15px;
+  font-size: 14px;
+  color: rgb(179, 180, 180);
+  border: 1px solid #464545;
+}
+
+
+@media (max-width: 767.98px) {
+  .list-table-format {
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-areas:
+      "image name"
+      "category price"
+      "action action";
+  }
+
+  .list-table-format.title {
+    display: none; 
+  }
+
+  .list-table-format img {
+    grid-area: image;
+  }
+
+  .cell-name {
+    grid-area: name;
+  }
+
+  .cell-category {
+    grid-area: category;
+  }
+
+  .cell-price {
+    grid-area: price;
+  }
+
+  .cell-action {
+    grid-area: action;
+    justify-self: start;
+  }
+}
+
+
+@media (min-width: 768px) {
+  .cell-action {
+    justify-self: center;
+  }
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Main grid with Index column added */
+.list-table .Para{
+  margin-bottom: 15px;
+  color: rgb(231, 231, 231);
+}
+.list-table-format {
+  display: grid;
+  grid-template-columns: 0.4fr 0.5fr 2fr 1fr 1fr 0.5fr; /* Index added */
+  align-items: center;
+  /* gap: 10px; */
+  gap: 25px;
+  padding: 12px 15px;
+  border: 1px solid #464545;
+  color: rgb(224, 224, 224);
+  font-size: 13px;
+}
+.list-table-format.title {
+  background-color: #ff2600;
+  color: black;
+  grid-template-columns: 0.4fr 0.5fr 2fr 1fr 1fr 0.5fr; /* matches body */
+}
+.list-table-format img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+/* Index styling */
+.cell-index {
+  text-align: center;
+  font-weight: 600;
+  color: #ff2600;
+}
+/* Remove overflow restrictions to allow full text */
+.cell-name,
+.cell-category,
+.cell-price {
+  /* No overflow: hidden; text-overflow: ellipsis; white-space: nowrap; */
+}
+/* Action button */
+.cell-action {
+  background: #ff2600;
+  color: white;
+  width: 18px;
+  height: 25px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cursor {
+  cursor: pointer;
+}
+/* States */
+.list-loading,
+.list-empty {
+  padding: 20px 15px;
+  text-align: center;
+  font-size: 15px;
+  color: rgb(255, 255, 255);
+  border: 1px solid #464545;
+  background-color: rgb(0, 0, 0);
+}
+/* Responsive – Mobile & Tablet – Full text visible */
+@media (max-width: 767.98px) {
+  .list-table-format {
+    grid-template-columns: 1fr; /* Single column for stacking */
+    grid-template-areas:
+      "index"
+      "image"
+      "name"
+      "category"
+      "price"
+      "action";
+    gap: 8px;
+    padding: 14px 10px;
+    font-size: 14px;
+    align-items: start; /* Align to top for better text flow */
+  }
+  .list-table-format.title {
+    display: none;
+  }
+  /* Index */
+  .cell-index {
+    grid-area: index;
+    font-weight: bold;
+    color: #ff2600;
+    font-size: 16px;
+  }
+  /* Image */
+  .list-table-format img {
+    grid-area: image;
+    width: 60px;
+    height: 60px;
+  }
+  /* Full Name – allow wrapping */
+  .cell-name {
+    grid-area: name;
+    font-weight: 600;
+    color: white;
+    word-break: break-word; /* Break long words if needed */
+    white-space: normal; /* Allow wrapping */
+    line-height: 1.4;
+    hyphens: auto; /* Optional: auto-hyphenate for better breaks */
+  }
+  /* Full Category – allow wrapping */
+  .cell-category {
+    grid-area: category;
+    color: #cecdcd;
+    /* color: #ff6b35; */
+    font-weight: 500;
+    word-break: break-word;
+    white-space: normal;
+    line-height: 1.4;
+    padding-top: 6px;
+    hyphens: auto;
+  }
+  /* Price */
+  .cell-price {
+    grid-area: price;
+    justify-self: end;
+    font-weight: bold;
+    color: #ff2600;
+    font-size: 16px;
+  }
+  /* Action Button */
+  .cell-action {
+    grid-area: action;
+    justify-self: start;
+    margin-top: 10px;
+    width: 18px;
+    height: 25px;
+    font-size: 16px;
+  }
+}
+
+/* Desktop adjustments: Allow wrapping in name and category to prevent cutoff */
+@media (min-width: 768px) {
+  .list-table-format {
+    grid-template-columns: 0.4fr 0.5fr minmax(0, 2fr) 1fr 1fr 0.5fr; /* Use minmax to allow shrinking without overflow */
+  }
+  .cell-name,
+  .cell-category {
+    white-space: normal; /* Allow multi-line wrapping */
+    word-break: break-word;
+    line-height: 1.4;
+    hyphens: auto;
+    max-height: none; /* No max height restriction */
+  }
+  /* Optional: Limit height if needed, but allow scroll or wrap */
+  /* .cell-name, .cell-category { overflow-y: auto; max-height: 60px; } */ /* Uncomment if you want scroll for very long text */
+}
+
+
+
+
+
+/* Limit table width on medium screens (current behavior remains similar) */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .list-table {
+    max-width: 1000px; /* Adjust if needed; keeps it from feeling too stretched on 1024px screens */
+    margin: 0 auto; /* Centers the table */
+  }
+}
+
+/* Increase table width on large screens (1200px and up) */
+@media (min-width: 1200px) {
+  .list-table {
+    max-width: 1400px; /* Or higher, e.g., 1600px, depending on your design preference */
+    margin: 0 auto; /* Centers the table for better visuals on ultra-wide screens */
+  }
+}
