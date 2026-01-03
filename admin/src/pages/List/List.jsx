@@ -370,7 +370,8 @@ const List = ({ url = 'https://h-a-t-backend.onrender.com' }) => {
                   <p className="cell-price">{item.price} TK</p>
                   <div className="cell-action">
                     <button onClick={() => startEdit(item)} className="edit-btn" title="Edit">
-                      ✒️
+                      {/* ✒️ */}
+                      ✎
                     </button>
                     <button
                       onClick={() => removeFood(item._id)}
