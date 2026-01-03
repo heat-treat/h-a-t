@@ -244,7 +244,8 @@
 }
 
 .edit-btn {
-  background: #ff8c00;
+  /* background: #ff8c00; */
+    background: #ff2600;
   color: white;
 }
 
