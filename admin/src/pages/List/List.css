@@ -226,7 +226,8 @@
 .cell-action {
   display: flex;
   align-items: center;
-  gap: 8px;
+  /* gap: 8px; */
+     gap: 10px;
 }
 
 .edit-btn, .delete-btn {
