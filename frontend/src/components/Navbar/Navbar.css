@@ -250,7 +250,8 @@
   /* font-size: 18px; */
   font-size: 19px;
   /* margin: 0; */
-  margin-left: 680px;
+  /* margin-left: 680px; */
+  margin-left: auto;
   padding: 0;
 }
 
