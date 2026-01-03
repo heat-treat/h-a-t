@@ -207,6 +207,15 @@ import { toast } from 'react-toastify';
 const List = ({ url = 'https://h-a-t-backend.onrender.com' }) => {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [editItem, setEditItem] = useState(null); 
+  const [formData, setFormData] = useState({
+    name: '',
+    description: '',
+    price: '',
+    category: '',
+    imageUrl: '',
+  });
+  const [imageFile, setImageFile] = useState(null);
 
   const fetchList = async () => {
     try {
@@ -238,6 +247,54 @@ const List = ({ url = 'https://h-a-t-backend.onrender.com' }) => {
     }
   };
 
+  const startEdit = (item) => {
+    setEditItem(item._id);
+    setFormData({
+      name: item.name,
+      description: item.description,
+      price: item.price,
+      category: item.category,
+      imageUrl: item.image.startsWith('http') ? item.image : '',
+    });
+    setImageFile(null);
+  };
+
+  const cancelEdit = () => {
+    setEditItem(null);
+    setFormData({ name: '', description: '', price: '', category: '', imageUrl: '' });
+    setImageFile(null);
+  };
+
+  const saveUpdate = async () => {
+    if (!editItem) return;
+
+    const data = new FormData();
+    data.append('id', editItem);
+    data.append('name', formData.name);
+    data.append('description', formData.description);
+    data.append('price', formData.price);
+    data.append('category', formData.category);
+    if (formData.imageUrl) {
+      data.append('imageUrl', formData.imageUrl);
+    }
+    if (imageFile) {
+      data.append('image', imageFile);
+    }
+
+    try {
+      const response = await axios.post(`${url}/api/food/update`, data);
+      if (response.data.success) {
+        toast.success(response.data.message);
+        await fetchList();
+        cancelEdit();
+      } else {
+        toast.error(response.data.message || 'Update failed');
+      }
+    } catch (err) {
+      toast.error('Error updating item');
+    }
+  };
+
   useEffect(() => {
     fetchList();
   }, []);
@@ -246,7 +303,7 @@ const List = ({ url = 'https://h-a-t-backend.onrender.com' }) => {
     <div className="list add flex-col">
       <div className="list-table">
         <p className='Para'>All Foods List</p>
-        {/* Table Header */}
+        
         <div className="list-table-format title">
           <b>#</b>
           <b>Image</b>
@@ -256,36 +313,104 @@ const List = ({ url = 'https://h-a-t-backend.onrender.com' }) => {
           <b>Action</b>
         </div>
 
-        {/* Loading & Empty States */}
         {loading && <div className="list-loading">Loading...</div>}
         {!loading && list.length === 0 && <div className="list-empty">No items found</div>}
 
-        {/* List Items with Index */}
         {!loading &&
           list.map((item, index) => (
             <div key={item._id} className="list-table-format">
               <p className="cell-index">{index + 1}</p>
-              
-              {/* FIXED IMAGE LOGIC BELOW */}
-              <img 
-                src={item.image.startsWith("http") ? item.image : `${url}/images/${item.image}`} 
-                alt={`${item.name} image`} 
+
+              <img
+                src={item.image.startsWith("http") ? item.image : `${url}/images/${item.image}`}
+                alt={`${item.name} image`}
               />
-              
-              <p className="cell-name">{item.name}</p>
-              <p className="cell-category">{item.category}</p>
-              <p className="cell-price">{item.price} TK</p>
-              <button
-                type="button"
-                onClick={() => removeFood(item._id)}
-                className="cell-action cursor"
-                aria-label={`Remove ${item.name}`}
-                title={`Remove ${item.name}`}
-              >
-                X
-              </button>
+
+              {editItem === item._id ? (
+                <>
+                  <textarea
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="edit-input cell-name"
+                    placeholder="Name"
+                    rows="1"
+                  />
+                  
+                  {/* Category Dropdown */}
+                  <select 
+                    value={formData.category} 
+                    onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                    className="edit-input cell-category"
+                  >
+                    <option value="Deep Fried">Deep Fried</option>
+                    <option value="Crispy Fried Wings">Crispy Fried Wings</option>
+                    <option value="Juicy Wings">Juicy Wings</option>
+                    <option value="Savory">Savory</option>
+                    <option value="Rice Bowls">Rice Bowls</option>
+                    <option value="Add Ons">Add Ons</option>
+                    <option value="Coffee">Coffee</option>
+                  </select>
+
+                  <textarea
+                    value={formData.price}
+                    onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+                    className="edit-input cell-price"
+                    placeholder="Price"
+                    rows="1"
+                  />
+                  <div className="edit-actions">
+                    <button onClick={saveUpdate} className="save-btn">Save</button>
+                    <button onClick={cancelEdit} className="cancel-btn">Cancel</button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <p className="cell-name">{item.name}</p>
+                  <p className="cell-category">{item.category}</p>
+                  <p className="cell-price">{item.price} TK</p>
+                  <div className="cell-action">
+                    <button onClick={() => startEdit(item)} className="edit-btn" title="Edit">
+                      ✎
+                    </button>
+                    <button
+                      onClick={() => removeFood(item._id)}
+                      className="cell-action cursor delete-btn"
+                      title={`Remove ${item.name}`}
+                    >
+                      X
+                    </button>
+                  </div>
+                </>
+              )}
             </div>
           ))}
+
+        {editItem && (
+          <div className="edit-full-row">
+            <p>Description:</p>
+            <textarea
+              value={formData.description}
+              onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+              placeholder="Description"
+              className='des'
+              rows="4"
+            />
+            <p>Image URL (Optional):</p>
+            <textarea
+              value={formData.imageUrl}
+              onChange={(e) => setFormData({ ...formData, imageUrl: e.target.value })}
+              placeholder="Or paste Image URL (http...)"
+              className="edit-input"
+              rows="2"
+            />
+            <p>Or upload new image:</p>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => setImageFile(e.target.files[0])}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
