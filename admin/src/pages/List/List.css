@@ -167,175 +167,234 @@
 
 
 
-/* Main grid with Index column added */
-.list-table .Para{
+
+/* Main Container & Title */
+.list-table .Para {
   margin-bottom: 15px;
   color: rgb(231, 231, 231);
+  font-size: 1.2rem;
+  font-weight: 500;
 }
+
+/* Grid Layout Definition */
 .list-table-format {
   display: grid;
-  grid-template-columns: 0.4fr 0.5fr 2fr 1fr 1fr 0.5fr; /* Index added */
+  /* Columns: Index, Image, Name (flexible), Category, Price, Action */
+  grid-template-columns: 0.4fr 0.6fr 2fr 1.2fr 1fr 0.6fr;
   align-items: center;
-  /* gap: 10px; */
-  gap: 25px;
+  gap: 20px;
   padding: 12px 15px;
   border: 1px solid #464545;
   color: rgb(224, 224, 224);
   font-size: 13px;
+  background-color: #000;
 }
+
+/* Table Header Styling */
 .list-table-format.title {
   background-color: #ff2600;
-  color: black;
-  grid-template-columns: 0.4fr 0.5fr 2fr 1fr 1fr 0.5fr; /* matches body */
+  color: #000;
+  font-weight: bold;
+  border: 1px solid #ff2600;
 }
+
+/* Image Styling */
 .list-table-format img {
   width: 50px;
   height: 50px;
   object-fit: cover;
   border-radius: 4px;
+  border: 1px solid #333;
 }
-/* Index styling */
+
+/* Cell Specific Styles */
 .cell-index {
   text-align: center;
   font-weight: 600;
   color: #ff2600;
 }
-/* Remove overflow restrictions to allow full text */
+
 .cell-name,
 .cell-category,
 .cell-price {
-  /* No overflow: hidden; text-overflow: ellipsis; white-space: nowrap; */
+  white-space: normal;
+  word-break: break-word;
+  line-height: 1.4;
 }
-/* Action button */
+
+/* Action Buttons (Edit/Delete) */
 .cell-action {
-  background: #ff2600;
-  color: white;
-  width: 18px;
-  height: 25px;
-  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.edit-btn, .delete-btn {
+  width: 28px;
+  height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.cursor {
+  border-radius: 4px;
   cursor: pointer;
+  border: none;
+  font-size: 14px;
+  transition: opacity 0.2s;
 }
-/* States */
-.list-loading,
-.list-empty {
-  padding: 20px 15px;
-  text-align: center;
-  font-size: 15px;
-  color: rgb(255, 255, 255);
+
+.edit-btn {
+  background: #ff8c00;
+  color: white;
+}
+
+.delete-btn {
+  background: #ff2600;
+  color: white;
+}
+
+.edit-btn:hover, .delete-btn:hover {
+  opacity: 0.8;
+}
+
+/* Input, Textarea, and Select Styling for Edit Mode */
+.edit-input {
+  padding: 8px;
+  border: 1px solid #ff2600;
+  background: #1a1a1a;
+  color: white;
+  border-radius: 4px;
+  font-size: 13px;
+  width: 100%;
+  outline: none;
+}
+
+textarea.edit-input {
+  resize: vertical;
+  font-family: inherit;
+  min-height: 40px;
+}
+
+select.edit-input {
+  cursor: pointer;
+  appearance: auto; /* Ensures the dropdown arrow is visible */
+}
+
+/* Full Row Editing (Description & Image Upload Section) */
+.edit-full-row {
+  grid-column: 1 / -1;
+  padding: 20px;
+  background: #111;
   border: 1px solid #464545;
-  background-color: rgb(0, 0, 0);
+  border-top: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
-/* Responsive – Mobile & Tablet – Full text visible */
-@media (max-width: 767.98px) {
+
+.edit-full-row p {
+  color: #ff2600;
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: -8px;
+}
+
+.edit-full-row textarea {
+  padding: 10px;
+  background: #222;
+  color: white;
+  border: 1px solid #464546;
+  border-radius: 4px;
+  resize: vertical;
+  outline: none;
+}
+
+.edit-full-row textarea:focus {
+  border-color: #ff2600;
+}
+
+
+
+/* Footer Actions */
+.edit-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.save-btn, .cancel-btn {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.save-btn { background: #ff2600; color: white; }
+.cancel-btn { background: #444; color: white; }
+
+/* ---------------------------------------------------
+   RESPONSIVE DESIGN (sm, md, lg, xl)
+--------------------------------------------------- */
+
+/* Mobile (Small Devices - sm) */
+@media (max-width: 600px) {
   .list-table-format {
-    grid-template-columns: 1fr; /* Single column for stacking */
-    grid-template-areas:
-      "index"
-      "image"
-      "name"
-      "category"
-      "price"
-      "action";
-    gap: 8px;
-    padding: 14px 10px;
-    font-size: 14px;
-    align-items: start; /* Align to top for better text flow */
+    grid-template-columns: 1fr; /* Stack everything */
+    gap: 10px;
+    padding: 15px;
+    text-align: left;
   }
+  
   .list-table-format.title {
-    display: none;
+    display: none; /* Hide headers on mobile */
   }
-  /* Index */
-  .cell-index {
-    grid-area: index;
-    font-weight: bold;
-    color: #ff2600;
-    font-size: 16px;
-  }
-  /* Image */
+
   .list-table-format img {
-    grid-area: image;
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
   }
-  /* Full Name – allow wrapping */
-  .cell-name {
-    grid-area: name;
-    font-weight: 600;
-    color: white;
-    word-break: break-word; /* Break long words if needed */
-    white-space: normal; /* Allow wrapping */
-    line-height: 1.4;
-    hyphens: auto; /* Optional: auto-hyphenate for better breaks */
-  }
-  /* Full Category – allow wrapping */
-  .cell-category {
-    grid-area: category;
-    color: #cecdcd;
-    /* color: #ff6b35; */
-    font-weight: 500;
-    word-break: break-word;
-    white-space: normal;
-    line-height: 1.4;
-    padding-top: 6px;
-    hyphens: auto;
-  }
-  /* Price */
+
   .cell-price {
-    grid-area: price;
-    justify-self: end;
-    font-weight: bold;
     color: #ff2600;
+    font-weight: bold;
     font-size: 16px;
   }
-  /* Action Button */
-  .cell-action {
-    grid-area: action;
-    justify-self: start;
-    margin-top: 10px;
-    width: 18px;
-    height: 25px;
-    font-size: 16px;
+
+  .edit-actions {
+    flex-direction: row;
   }
 }
 
-/* Desktop adjustments: Allow wrapping in name and category to prevent cutoff */
-@media (min-width: 768px) {
+/* Tablets (Medium Devices - md) */
+@media (min-width: 601px) and (max-width: 1024px) {
   .list-table-format {
-    grid-template-columns: 0.4fr 0.5fr minmax(0, 2fr) 1fr 1fr 0.5fr; /* Use minmax to allow shrinking without overflow */
-  }
-  .cell-name,
-  .cell-category {
-    white-space: normal; /* Allow multi-line wrapping */
-    word-break: break-word;
-    line-height: 1.4;
-    hyphens: auto;
-    max-height: none; /* No max height restriction */
-  }
-  /* Optional: Limit height if needed, but allow scroll or wrap */
-  /* .cell-name, .cell-category { overflow-y: auto; max-height: 60px; } */ /* Uncomment if you want scroll for very long text */
-}
-
-
-
-
-
-/* Limit table width on medium screens (current behavior remains similar) */
-@media (min-width: 768px) and (max-width: 1199px) {
-  .list-table {
-    max-width: 1000px; /* Adjust if needed; keeps it from feeling too stretched on 1024px screens */
-    margin: 0 auto; /* Centers the table */
+    grid-template-columns: 0.3fr 0.6fr 1.5fr 1fr 0.8fr 0.6fr;
+    gap: 15px;
+    font-size: 12px;
   }
 }
 
-/* Increase table width on large screens (1200px and up) */
-@media (min-width: 1200px) {
+/* Desktop (Large Devices - lg) */
+@media (min-width: 1025px) and (max-width: 1440px) {
   .list-table {
-    max-width: 1400px; /* Or higher, e.g., 1600px, depending on your design preference */
-    margin: 0 auto; /* Centers the table for better visuals on ultra-wide screens */
+    max-width: 95%;
+    margin: 0 auto;
+  }
+  .list-table-format {
+    grid-template-columns: 0.4fr 0.6fr 2fr 1.2fr 1fr 0.6fr;
+  }
+}
+
+/* Ultra Wide (Extra Large - xl) */
+@media (min-width: 1441px) {
+  .list-table {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .list-table-format {
+    font-size: 15px;
+    padding: 15px 20px;
   }
 }
