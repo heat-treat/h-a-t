@@ -13,7 +13,6 @@
 }
 
 
-
 .order h3 {
    color: rgb(231, 231, 231);
   font-weight: 300;
@@ -48,6 +47,45 @@
   padding: 10px;
   outline: none;
 }
+
+
+
+
+
+
+
+
+/* Layout helper for select and delete button */
+.order-item-action {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.delete-order-btn {
+  background-color: #ff2600;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 4px;
+  transition: 0.3s;
+}
+
+.delete-order-btn:hover {
+  background-color: #fd2600f3;
+}
+
+/* Update grid to accommodate the action container if needed */
+@media (max-width: 1000px) {
+  .order-item-action {
+    margin-top: 10px;
+    justify-content: flex-start;
+  }
+}
+
+
 
 @media (max-width: 1000px) {
   .order-item {
