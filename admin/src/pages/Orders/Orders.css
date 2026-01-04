@@ -1,3 +1,56 @@
+/* --- SEARCH BAR STYLES --- */
+.order-search {
+  margin: 20px 0;
+  width: 100%;
+}
+
+.order-search input {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #464545;
+  color: #e0e0e0;
+  border-radius: 4px;
+  outline: none;
+  font-size: 14px;
+}
+
+.order-search input:focus {
+  border-color: #ff2600c7;
+}
+
+.no-orders {
+  color: #b1adad;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Ensure search bar stays consistent across devices */
+@media (max-width: 480px) {
+  .order-search input {
+    max-width: 100%;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .order-item {
   display: grid;
   grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr;
@@ -13,6 +66,7 @@
 }
 
 
+
 .order h3 {
    color: rgb(231, 231, 231);
   font-weight: 300;
@@ -25,8 +79,19 @@
   color: #ff2600;
 }
 
-.order-item .order-item-food,
+
+
+.oid{
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
 .order-item-name {
+  font-weight: 600;
+}
+
+
+.order-item-phone{
   font-weight: 600;
 }
 
@@ -77,6 +142,14 @@
   background-color: #fd2600f3;
 }
 
+
+
+
+
+
+
+
+
 /* Update grid to accommodate the action container if needed */
 @media (max-width: 1000px) {
   .order-item-action {
@@ -84,6 +157,13 @@
     justify-content: flex-start;
   }
 }
+
+
+
+
+
+
+
 
 
 
@@ -146,3 +226,4 @@
     margin-left: 15px;
   }
 }
+
