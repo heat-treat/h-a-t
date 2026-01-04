@@ -233,19 +233,44 @@ const List = ({ url = 'https://h-a-t-backend.onrender.com' }) => {
     }
   };
 
-  const removeFood = async (foodId) => {
-    try {
-      const response = await axios.post(`${url}/api/food/remove`, { id: foodId });
-      if (response.data && response.data.success) {
-        toast.success(response.data.message || 'Item removed');
-        await fetchList();
-      } else {
-        toast.error(response.data?.message || 'Error removing item');
+  // const removeFood = async (foodId) => {
+  //   try {
+  //     const response = await axios.post(`${url}/api/food/remove`, { id: foodId });
+  //     if (response.data && response.data.success) {
+  //       toast.success(response.data.message || 'Item removed');
+  //       await fetchList();
+  //     } else {
+  //       toast.error(response.data?.message || 'Error removing item');
+  //     }
+  //   } catch (err) {
+  //     toast.error(err?.response?.data?.message || 'Network error while removing item');
+  //   }
+  // };
+
+
+
+
+const removeFood = async (foodId) => {
+    // Added confirmation alert
+    if (window.confirm("Are you sure you want to remove this item?")) {
+      try {
+        const response = await axios.post(`${url}/api/food/remove`, { id: foodId });
+        if (response.data && response.data.success) {
+          toast.success(response.data.message || 'Item removed');
+          await fetchList();
+        } else {
+          toast.error(response.data?.message || 'Error removing item');
+        }
+      } catch (err) {
+        toast.error(err?.response?.data?.message || 'Network error while removing item');
       }
-    } catch (err) {
-      toast.error(err?.response?.data?.message || 'Network error while removing item');
     }
   };
+
+
+
+
+  
 
   const startEdit = (item) => {
     setEditItem(item._id);
