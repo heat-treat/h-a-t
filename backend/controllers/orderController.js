@@ -242,13 +242,14 @@
 
 
 
+
 // orderController.js
 
 import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
 
 // Frontend base URL (env fallback to localhost)
-const frontend_url = process.env.FRONTEND_URL || "https://h-a-t-frontend.onrender.com";
+const frontend_url = process.env.FRONTEND_URL || "http://localhost:5173";
 
 // Placing user order (Cash on Delivery - No Stripe)
 const placeOrder = async (req, res) => {
@@ -307,4 +308,23 @@ const updateStatus = async (req, res) => {
   }
 };
 
-export { placeOrder, userOrders, listOrders, updateStatus };
+
+
+
+// API for deleting an order
+const deleteOrder = async (req, res) => {
+  try {
+    await orderModel.findByIdAndDelete(req.body.orderId);
+    res.json({ success: true, message: "Order Deleted Successfully" });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: "Error deleting order" });
+  }
+};
+
+
+export { placeOrder, userOrders, listOrders, updateStatus, deleteOrder };
+
+
+
+// export { placeOrder, userOrders, listOrders, updateStatus };
