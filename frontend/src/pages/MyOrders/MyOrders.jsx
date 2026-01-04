@@ -61,10 +61,6 @@
 
 
 
-
-
-
-
 import { useContext, useEffect, useState } from "react";
 import "./MyOrders.css";
 import { StoreContext } from "../../context/StoreContext";
@@ -72,6 +68,23 @@ import axios from "axios";
 import { BsBoxSeamFill } from "react-icons/bs";
 
 const MyOrders = () => {
+  const openEmail = (e) => {
+    e.preventDefault();
+    const email = "tastecode.1525@gmail.com";
+
+    // Check if user is on Mobile
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    if (isMobile) {
+      window.location.href = `mailto:${email}`;
+    } else {
+      // Open Gmail Web in new tab for Desktop
+      window.open(
+        `https://mail.google.com/mail/?view=cm&fs=1&to=${email}`,
+        "_blank"
+      );
+    }
+  };
   const { url, token } = useContext(StoreContext);
   const [data, setData] = useState([]);
 
@@ -122,12 +135,7 @@ const MyOrders = () => {
                 <div className="cancel-content">
                   <p className="hint">
                     Please copy from the below & send this at the{" "}
-                    <a
-                      className="mail"
-                      href="https://mail.google.com/mail/?view=cm&fs=1&to=tastecode.1525@gmail.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
+                    <a className="mail" href="#" onClick={openEmail}>
                       Gmail
                     </a>
                   </p>
