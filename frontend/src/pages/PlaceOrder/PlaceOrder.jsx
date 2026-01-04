@@ -12,9 +12,10 @@ const PlaceOrder = () => {
     firstName: "",
     lastName: "",
     email: "",
-    street: "",
+    // street: "",
+    address: "",
     city: "",
-    district: "",
+    // district: "",
     phone: ""
   });
 
@@ -78,10 +79,11 @@ const PlaceOrder = () => {
           <input required name="lastName" onChange={onChangeHandler} value={data.lastName} type="text" placeholder="Last Name" />
         </div>
         <input required name="email" onChange={onChangeHandler} value={data.email} type="email" placeholder="Email Address" />
-        <textarea className="address-textarea" required name="street" onChange={onChangeHandler} value={data.street} type="text" placeholder="Street" />
+        {/* <textarea className="address-textarea" required name="street" onChange={onChangeHandler} value={data.street} type="text" placeholder="Street" /> */}
+        <textarea className="address-textarea" required name="address" onChange={onChangeHandler} value={data.address} type="text" placeholder="Address" />
         <div className="multi-fields">
           <textarea className="address-textarea" required name="city" onChange={onChangeHandler} value={data.city} type="text" placeholder="City" />
-          <textarea className="address-textarea" required name="district" onChange={onChangeHandler} value={data.district} type="text" placeholder='District' />
+          {/* <textarea className="address-textarea" required name="district" onChange={onChangeHandler} value={data.district} type="text" placeholder='District' /> */}
         </div>
         <div className="multi-fields">
           {/* <input required name="zipcode" onChange={onChangeHandler} value={data.zipcode} type="text" placeholder='Zip Code' /> */}
