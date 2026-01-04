@@ -98,7 +98,7 @@ const Footer = () => {
             </li>
             <li>
               <FaPhoneAlt className="icon phone" />
-              <a href="tel:+8801334218173">+880 1635-646047</a>
+              <a href="tel:+8801635646047">+880 1635-646047</a>
             </li>
             <li>
               <FaPhoneAlt className="icon phone" />
