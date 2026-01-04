@@ -5,6 +5,26 @@ import { GrMapLocation } from "react-icons/gr";
 import { FaFacebookF, FaPhoneAlt, FaWhatsapp } from "react-icons/fa";
 
 const Footer = () => {
+
+
+  const openEmail = (e) => {
+  e.preventDefault();
+  const email = "tastecode.1525@gmail.com";
+  
+  // Check if user is on Mobile
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+  if (isMobile) {
+    window.location.href = `mailto:${email}`;
+  } else {
+    // Open Gmail Web in new tab for Desktop
+    window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${email}`, "_blank");
+  }
+};
+
+
+
+
   return (
     <div className="footer" id="footer">
       <hr />
@@ -65,20 +85,17 @@ const Footer = () => {
             {/* <li>
               <MdOutgoingMail className="icon gmail" />
               <a
-                href="https://mail.google.com/"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=tastecode.1525@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 tastecode.1525@gmail.com
               </a>
             </li> */}
-
             <li>
               <MdOutgoingMail className="icon gmail" />
               <a
-                href="https://mail.google.com/mail/?view=cm&fs=1&to=tastecode.1525@gmail.com"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#" onClick={openEmail}
               >
                 tastecode.1525@gmail.com
               </a>
