@@ -160,6 +160,7 @@
   padding: 6px 10px;
   border-radius: 20px;
   font-size: 14px;
+  border: 1px solid #504f4f;
 } */
 
 
@@ -172,6 +173,7 @@
   padding: 6px 10px;
   border-radius: 5px;
   font-size: 14px;
+  border: 1px solid #504f4f;
 }
 
 .item-total {
