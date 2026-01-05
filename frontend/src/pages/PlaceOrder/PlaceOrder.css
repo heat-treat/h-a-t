@@ -88,6 +88,7 @@
   padding: 14px;
   background: rgba(255, 255, 255, 0.05);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  border: 1px solid #464545;
 }
 
 .place-order-left .title {
@@ -135,6 +136,8 @@
 .place-order-right {
   width: 100%;
   max-width: max(40%, 500px);
+  border: 1px solid #464545;
+  border-radius: 15px;
 }
 
 .place-order-right .cart-total {
