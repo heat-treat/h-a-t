@@ -61,7 +61,8 @@
   margin: 30px 0px;
   font-size: 14px;
   color: #b1adad;
-  border: 0px solid;
+  /* border: 0px solid; */
+  border: 1px solid #464545;
   background: rgba(255, 255, 255, 0.05);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
