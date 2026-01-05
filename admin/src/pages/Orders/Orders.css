@@ -18,7 +18,7 @@
 
 .order-search input:focus {
   /* border-color: #ff2600c7; */
-  border-color: #b4b3b3c7;
+  border: 2px solid #b4b3b3c7;
 }
 
 .no-orders {
