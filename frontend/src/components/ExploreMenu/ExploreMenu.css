@@ -42,7 +42,8 @@
     cursor: pointer;
     border-radius: 50%;
     transition: 0.2s;
-    border: 2px solid #ff2600;
+    /* border: 2px solid #ff2600; */
+    border: 2px solid rgb(161, 161, 161);
 }
 
 .explore-menu-list-item p{
