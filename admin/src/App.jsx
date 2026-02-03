@@ -37,7 +37,7 @@ export default App */
 // src/App.jsx
 import Sidebar from "./components/Sidebar/Sidebar";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
-import Dashboard from "./pages/Dashboard/Dashboard";
+
 import Add from "./pages/Add/Add";
 import List from "./pages/List/List";
 import Orders from "./pages/Orders/Orders";
@@ -91,16 +91,7 @@ const App = () => {
 
         {/* Admin protected routes */}
 
-        <Route
-          path="/dashboard"
-          element={
-            <RequireAllowed>
-              <AdminLayout>
-                <Dashboard url={url} />
-              </AdminLayout>
-            </RequireAllowed>
-          }
-        />
+
         <Route
           path="/add"
           element={
