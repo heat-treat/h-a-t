@@ -11,10 +11,15 @@
 //   const url = "http://localhost:4000"
 //   return (
 //     <div>
-      // <ToastContainer/>
-      {/* <Navbar/> */}
-      {/* <hr/> */}
-      {/* <div className="app-content">
+// <ToastContainer/>
+{
+  /* <Navbar/> */
+}
+{
+  /* <hr/> */
+}
+{
+  /* <div className="app-content">
         <Sidebar/>
         <Routes>
       <Route path="/add" element={<Add url={url}/>} />
@@ -26,47 +31,13 @@
   )
 }
 
-export default App */}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export default App */
+}
 
 // src/App.jsx
 import Sidebar from "./components/Sidebar/Sidebar";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import Dashboard from "./pages/Dashboard/Dashboard";
 import Add from "./pages/Add/Add";
 import List from "./pages/List/List";
 import Orders from "./pages/Orders/Orders";
@@ -107,7 +78,7 @@ const RequireAllowed = ({ children }) => {
 };
 
 const App = () => {
-  const url = "https://h-a-t-backend.onrender.com";
+  const url = "http://localhost:4000";
 
   return (
     <AuthProvider>
@@ -119,6 +90,17 @@ const App = () => {
         <Route path="/logout" element={<Logout />} />
 
         {/* Admin protected routes */}
+
+        <Route
+          path="/dashboard"
+          element={
+            <RequireAllowed>
+              <AdminLayout>
+                <Dashboard url={url} />
+              </AdminLayout>
+            </RequireAllowed>
+          }
+        />
         <Route
           path="/add"
           element={
