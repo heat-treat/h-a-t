@@ -35,9 +35,10 @@ export default App */
 }
 
 // src/App.jsx
+
+
 import Sidebar from "./components/Sidebar/Sidebar";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
-
 import Add from "./pages/Add/Add";
 import List from "./pages/List/List";
 import Orders from "./pages/Orders/Orders";
@@ -90,8 +91,6 @@ const App = () => {
         <Route path="/logout" element={<Logout />} />
 
         {/* Admin protected routes */}
-
-
         <Route
           path="/add"
           element={
