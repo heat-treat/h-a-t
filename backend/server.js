@@ -6,18 +6,14 @@ import userRouter from "./routes/userRoute.js";
 import 'dotenv/config.js'
 import cartRouter from "./routes/cartRoute.js";
 import orderRouter from "./routes/orderRoute.js";
+import dashboardRouter from "./routes/dashboardRoute.js";
 
 // app config
 const app = express();
-const port = process.env.PORT || 4000;
-// const port = 4000;
+const port = 4000;
 
 // middleware
 app.use(express.json());
-// But this is safer for production
-// app.use(cors({
-//   origin: "https://h-a-t-frontend.onrender.com" 
-// }));
 app.use(cors());
 
 // db connection
@@ -30,6 +26,7 @@ app.use("/images",express.static('uploads'))
 app.use("/api/user", userRouter)
 app.use("/api/cart",cartRouter)
 app.use("/api/order",orderRouter)
+app.use("/api/dashboard", dashboardRouter);
 
 app.get("/", (req, res) => {
   res.send("API Working");
