@@ -41,13 +41,19 @@ import { IoListCircleOutline } from "react-icons/io5";
 import { RiAdminLine } from "react-icons/ri";
 import { BiBox } from "react-icons/bi";
 import { GiShop } from "react-icons/gi";
-// import { MdOutlinePointOfSale } from "react-icons/md";
+import { MdDashboard } from "react-icons/md";
 
+// import { MdOutlinePointOfSale } from "react-icons/md";
 
 const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="sidebar-options">
+        <NavLink to="/dashboard" className="sidebar-option">
+          <MdDashboard className="box" />
+          <p>Dashboard</p>
+        </NavLink>
+
         <NavLink to="/add" className="sidebar-option">
           <LiaPlusCircleSolid className="plus" />
           <p>Add Items</p>
@@ -56,14 +62,18 @@ const Sidebar = () => {
           <IoListCircleOutline className="list" />
           <p>List Items</p>
         </NavLink>
-        {/* <NavLink to="/orders" className="sidebar-option">
+        <NavLink to="/orders" className="sidebar-option">
           <BiBox className="box" />
           <p>Orders</p>
-        </NavLink> */}
-        <a href="https://h-a-t-frontend.onrender.com" className="sidebar-option">
+        </NavLink>
+        {/* <a href="https://en.wikipedia.org/wiki/Point_of_sale" className="sidebar-option">
+          <MdOutlinePointOfSale className="pos" />
+          <p>POS</p>
+        </a> */}
+        {/* <a href="https://en.wikipedia.org/wiki/Point_of_sale" className="sidebar-option">
           <GiShop  className="shop" />
           <p>H.A.T</p>
-        </a>
+        </a> */}
         <NavLink to="/logout" className="sidebar-option">
           <RiAdminLine className="adm" />
           <p>Logout</p>
