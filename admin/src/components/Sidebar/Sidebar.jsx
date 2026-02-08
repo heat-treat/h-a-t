@@ -57,10 +57,10 @@ const Sidebar = () => {
           <IoListCircleOutline className="list" />
           <p>List Items</p>
         </NavLink>
-        <NavLink to="/orders" className="sidebar-option">
+        {/* <NavLink to="/orders" className="sidebar-option">
           <BiBox className="box" />
           <p>Orders</p>
-        </NavLink>
+        </NavLink> */}
         {/* <a href="https://en.wikipedia.org/wiki/Point_of_sale" className="sidebar-option">
           <MdOutlinePointOfSale className="pos" />
           <p>POS</p>
