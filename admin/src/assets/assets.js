@@ -18,4 +18,4 @@ export const assets ={
     parcel_icon
 }
 
-export const url = 'https://h-a-t-backend.onrender.com'
+
